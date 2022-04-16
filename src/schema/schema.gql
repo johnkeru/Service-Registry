@@ -1,0 +1,196 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CommentDTO {
+  id: Float!
+  username: String!
+  email: String!
+  productId: String!
+  image: String
+  comment: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type GetCommentsResponse {
+  hasMore: Boolean!
+  comments: [CommentDTO!]!
+}
+
+type FTGetCommentsResponse {
+  fault_tolerance: String
+  comments: GetCommentsResponse
+}
+
+type FTAddCommentResponse {
+  comment: CommentDTO
+  fault_tolerance: String
+}
+
+type FTChangeDPRespo {
+  image: String
+  fault_tolerance: String
+}
+
+type GuserDTO {
+  id: String!
+  email: String!
+  username: String!
+  active: Boolean!
+  image: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type FTMeResponse {
+  guser: GuserDTO
+  fault_tolerance: String
+}
+
+type FTGusersResponse {
+  gusers: [GuserDTO!]
+  fault_tolerance: String
+}
+
+type Error {
+  field: String!
+  msg: String!
+}
+
+type RegiserResponse {
+  access_token: String
+  error: Error
+}
+
+type FTRegisterResponse {
+  register: RegiserResponse
+  login: RegiserResponse
+  fault_tolerance: String
+}
+
+type FTRefreshResponse {
+  refresh_token: String
+  fault_tolerance: String
+}
+
+type ProductDto {
+  email: String!
+  guserid: String!
+  username: String!
+  body: String!
+  isUserOnline: Boolean!
+  commentsLength: Float!
+  backgroundColor: String!
+  guserImage: String!
+  code: String!
+  isPrivate: Boolean!
+  name: String!
+  price: Float!
+  description: String!
+  image: String!
+  category: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _id: String!
+}
+
+type ProductError {
+  field: String!
+  msg: String!
+}
+
+type FTOnlyOneProductResponse {
+  product: ProductDto
+  fault_tolerence: String
+}
+
+type ProductResponse {
+  product: ProductDto
+  error: ProductError
+}
+
+type FTProductResponse {
+  product: ProductResponse
+  fault_tolerence: String
+}
+
+type FTProductResponseList {
+  products: [ProductDto!]
+  hasMore: Boolean
+  fault_tolerence: String
+}
+
+type Query {
+  findAllGuser: FTGusersResponse
+  me: FTMeResponse!
+  findGuserById(id: String = ""): FTMeResponse!
+  refresh: FTRefreshResponse
+  products(input: ProductsInput!): FTProductResponseList
+  getComments(input: GetCommentsInput!): FTGetCommentsResponse!
+  sayHi: String!
+  findById(_id: String!): FTOnlyOneProductResponse!
+}
+
+input ProductsInput {
+  cursor: String
+  limit: Float!
+  category: String
+  search: String
+  guserid: String
+}
+
+input GetCommentsInput {
+  limit: Float!
+  cursor: Float
+  productId: String!
+}
+
+type Mutation {
+  register(input: RegiserInput!): FTRegisterResponse
+  login(input: LoginInput!): FTRegisterResponse
+  delete(_id: String!): String!
+  create(input: ProductInput!): FTProductResponse
+  logout: String!
+  addComment(input: AddCommentInput!): FTAddCommentResponse!
+  update(input: ProductInput!): FTProductResponse
+  changedp(image: String!): FTChangeDPRespo
+}
+
+input RegiserInput {
+  email: String!
+  username: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input ProductInput {
+  _id: String
+  name: String!
+  category: String!
+  body: String
+  price: Float
+  description: String
+  guserImage: String
+  image: String
+  backgroundColor: String
+  code: String
+  isPrivate: Boolean
+}
+
+input AddCommentInput {
+  username: String
+  email: String
+  image: String
+  productId: String!
+  comment: String!
+}
