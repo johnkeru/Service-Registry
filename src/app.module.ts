@@ -44,19 +44,25 @@ import { UpdateResolver } from './product/product_resolvers/update.resolver';
       },
       { 
         name: PRODUCT_SERVICE, 
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'localhost',
-          port: 9000
-        }
+          urls: ['amqps://eoayjqkg:pHq77ZZcEV1f08J67xO1HHNGfSGTcCbB@shrimp.rmq.cloudamqp.com/eoayjqkg'],
+          queue: 'product_queue',
+          queueOptions: {
+            durable: false
+          },
+        },
       },
       {
         name: COMMENT_SERVICE,
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'localhost',
-          port: 7000
-        }
+          urls: ['amqps://eoayjqkg:pHq77ZZcEV1f08J67xO1HHNGfSGTcCbB@shrimp.rmq.cloudamqp.com/eoayjqkg'],
+          queue: 'comment_queue',
+          queueOptions: {
+            durable: false
+          },
+        },
       }
     ]),
   ],
