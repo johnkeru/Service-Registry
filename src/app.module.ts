@@ -33,11 +33,14 @@ import { UpdateResolver } from './product/product_resolvers/update.resolver';
     ClientsModule.register([
       { 
         name: GUSER_SERVICE, 
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: process.env.HOST || 'localhost',
-          port: parseInt(process.env.GUSERHOST) || 8000
-        }
+          urls: ['amqps://eoayjqkg:pHq77ZZcEV1f08J67xO1HHNGfSGTcCbB@shrimp.rmq.cloudamqp.com/eoayjqkg'],
+          queue: 'guser_queue',
+          queueOptions: {
+            durable: false
+          },
+        },
       },
       { 
         name: PRODUCT_SERVICE, 

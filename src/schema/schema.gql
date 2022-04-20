@@ -44,6 +44,7 @@ type GuserDTO {
   username: String!
   active: Boolean!
   image: String
+  mnemonic: String!
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -166,6 +167,7 @@ input RegiserInput {
   email: String!
   username: String!
   password: String!
+  mnemonic: String = ""
 }
 
 input LoginInput {

@@ -8,6 +8,8 @@ export class RegiserInput {
     username: string
     @Field()
     password: string
+    @Field({defaultValue: ""})
+    mnemonic?: string
 }
 
 

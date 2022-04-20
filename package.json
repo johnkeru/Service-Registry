@@ -28,6 +28,8 @@
     "@nestjs/graphql": "^10.0.8",
     "@nestjs/microservices": "^8.4.3",
     "@nestjs/platform-express": "^8.0.0",
+    "amqp-connection-manager": "^4.1.2",
+    "amqplib": "^0.8.0",
     "apollo-server-express": "^3.6.6",
     "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",

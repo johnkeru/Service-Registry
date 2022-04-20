@@ -12,6 +12,8 @@ export class GuserDTO {
     active?: boolean
     @Field({nullable: true})
     image?: string
+    @Field({defaultValue: ""})
+    mnemonic?: string
     @Field()
     created_at: Date
     @Field()
